@@ -1,0 +1,4 @@
+Alex Rodean 20 3590 8,5
+Sorin Puscas 21 3599  9,5
+Rares Bradean 22 3576  6
+David Vasile 19  3581  4,49
