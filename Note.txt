@@ -1,0 +1,12 @@
+Student{
+NumarMatricol=3590
+Prenume=Alexandru
+Nume=Rodean
+FormatieDeStudiu=232
+} | Nota: 9.5
+Student{
+NumarMatricol=3591
+Prenume=Marius
+Nume=Ionescu
+FormatieDeStudiu=232
+} | Nota: 8.0

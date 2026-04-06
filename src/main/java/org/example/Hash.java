@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Hash {
 
     public static void main(String[] args) {
-        // Folosește dublu backslash sau forward slash /
+
         File file = new File("C:/Users/Alex/Desktop/Pt paradigme lab/Student proiect/Student/src/main/java/org/example/Studenti.txt");
 
         Map<Student, Double> catalog = new HashMap<>();
@@ -19,14 +19,10 @@ public class Hash {
                 String linie = sc.nextLine();
                 if (linie.trim().isEmpty()) continue;
 
-                // Spargem linia după spații
+
                 String[] parti = linie.split("\\s+");
 
-                // parti[0] = Alex
-                // parti[1] = Rodean
-                // parti[2] = 20 (Vârstă/Formație)
-                // parti[3] = 3590 (Nr Matricol)
-                // parti[4] = 8,5 (Nota)
+
 
                 String prenume = parti[0];
                 String nume = parti[1];
@@ -34,11 +30,9 @@ public class Hash {
                 int matricol = Integer.parseInt(parti[3]);
 
                 // --- TRATARE NOTĂ ---
-                // Înlocuim virgula cu punct pentru ca Double.parseDouble să funcționeze
                 String notaText = parti[4].replace(',', '.');
                 double nota = Double.parseDouble(notaText);
 
-                // Creăm studentul și îl punem în Map cu nota lui specifică
                 Student s = new Student(matricol, prenume, nume, formatie);
                 catalog.put(s, nota);
             }

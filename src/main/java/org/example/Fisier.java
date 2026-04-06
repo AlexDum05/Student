@@ -20,19 +20,13 @@ public class Fisier {
             System.out.println("Fisierul nu a fost gasit.");
             return;
         }
+      // Sortează după Formație (index 3), apoi după Nume (index 0)
+        linii.sort(Comparator.comparing((String s) -> s.split(" ")[3]).thenComparing(s -> s.split(" ")[0]));
 
-        // --- MODUL 1: Sortare după NUME (Primul cuvânt) ---
-        linii.sort(Comparator.comparing(linie -> linie.split(" ")[0]));
-
-        System.out.println("\n--- Sortat dupa NUME ---");
+        System.out.println("\n--- Sortare dupa Formatie si Nume--- ");
         linii.forEach(System.out::println);
 
-        // --- MODUL 2: Sortare după FORMAȚIE/GRUPĂ (Ultimul cuvânt) ---
-        linii.sort(Comparator.comparing(linie -> linie.split(" ")[3]));
-
-        System.out.println("\n--- Sortat dupa FORMATIE (Grupa) ---");
-        linii.forEach(System.out::println);
-
+       // --- 3:Sortare dupa Ani ---
         linii.sort(Comparator.comparingInt(linie -> Integer.parseInt(linie.split(" ")[2])));
 
         System.out.println("\n--- Sortat dupa ANI (Crescator) ---");

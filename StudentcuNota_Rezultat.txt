@@ -1,0 +1,18 @@
+Student{
+NumarMatricol=3590
+Prenume=Alexandru
+Nume=Rodean
+FormatieDeStudiu=232
+} | Nota: 8.5
+Student{
+NumarMatricol=3599
+Prenume=Sorin
+Nume=Puscasu
+FormatieDeStudiu=267
+} | Nota: 9.5
+Student{
+NumarMatricol=3576
+Prenume=Rares
+Nume=Bradean
+FormatieDeStudiu=212
+} | Nota: 6.0

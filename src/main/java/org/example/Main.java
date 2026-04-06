@@ -2,9 +2,11 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main(String[] args) {
         List<Student> listaStudenti = new ArrayList<>();
@@ -29,10 +31,39 @@ public class Main {
             }
             }
 
-
-
-
         Student s1 = new Student(3590, "Alexandru", "Rodean", 232);
         System.out.println(s1);
+
+
+        // --- PARTEA NOUĂ PENTRU TEMĂ ---
+        System.out.println("\n--- Gestiune Studenti cu Note ---");
+
+        List<StudentCuNota> listaCuNote = new ArrayList<>();
+        // Adăugăm studenți folosind noua clasă (care are și câmp de notă)
+        listaCuNote.add(new StudentCuNota(3590, "Alexandru", "Rodean", 232, 8.5));
+        listaCuNote.add(new StudentCuNota(3599, "Sorin", "Puscasu", 267, 9.5));
+        listaCuNote.add(new StudentCuNota(3576, "Rares", "Bradean", 212, 6.0));
+
+        // Apelăm funcția de scriere în fișier
+        scrieStudentiInFisier(listaCuNote, "StudentcuNota_Rezultat.txt");
     }
-}
+
+    /**
+     * Funcție pentru scrierea în fișier a unei liste de StudentCuNota
+     */
+    public static void scrieStudentiInFisier(List<StudentCuNota> lista, String numeFisier) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(numeFisier))) {
+            for (StudentCuNota s : lista) {
+                writer.write(s.toString());
+                writer.newLine();
+            }
+            System.out.println("Succes! Datele au fost salvate in: " + numeFisier);
+        } catch (IOException e) {
+            System.err.println("Eroare la scrierea în fisier: " + e.getMessage());
+        }
+
+    }
+
+    }
+
+
