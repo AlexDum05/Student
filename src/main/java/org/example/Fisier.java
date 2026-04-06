@@ -20,17 +20,24 @@ public class Fisier {
             System.out.println("Fisierul nu a fost gasit.");
             return;
         }
-      // Sortează după Formație (index 3), apoi după Nume (index 0)
-        linii.sort(Comparator.comparing((String s) -> s.split(" ")[3]).thenComparing(s -> s.split(" ")[0]));
+        // Sortează după Formație (index 3), apoi după Nume (index 0)
+        linii = sorteazaDupaFormatieSiNume(linii);
 
         System.out.println("\n--- Sortare dupa Formatie si Nume--- ");
         linii.forEach(System.out::println);
 
-       // --- 3:Sortare dupa Ani ---
+        // --- 3:Sortare dupa Ani ---
         linii.sort(Comparator.comparingInt(linie -> Integer.parseInt(linie.split(" ")[2])));
 
         System.out.println("\n--- Sortat dupa ANI (Crescator) ---");
         linii.forEach(System.out::println);
+
+    }
+
+    public static List<String> sorteazaDupaFormatieSiNume(List<String> linii) {
+        linii.sort(Comparator.comparing((String s) -> s.split(" ")[3])
+                .thenComparing(s -> s.split(" ")[0]));
+        return linii;
     }
 }
 
