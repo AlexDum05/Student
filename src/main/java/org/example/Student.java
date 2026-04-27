@@ -1,70 +1,92 @@
 package org.example;
 
-public class Student {
-    private int NumarMatricol;
-    private String prenume;
-    private String nume;
-    private int formatieDeStudiu;
-    private boolean estePrezent;
-    public Student(int NumarMatricol,String prenume,String nume,int formatieDeStudiu ){
-        this.NumarMatricol=NumarMatricol;
-        this.prenume=prenume;
-        this.nume=nume;
-        this.formatieDeStudiu=formatieDeStudiu;
-        this.estePrezent=false;
+import java.util.Objects;
+
+public final class Student {
+
+    private final int numarMatricol;
+    private final String prenume;
+    private final String nume;
+    private final int formatieDeStudiu;
+    private final boolean estePrezent;
+
+    // Constructorul principal
+    public Student(int numarMatricol, String prenume, String nume, int formatieDeStudiu) {
+        this.numarMatricol = numarMatricol;
+        this.prenume = prenume;
+        this.nume = nume;
+        this.formatieDeStudiu = formatieDeStudiu;
+        this.estePrezent = false;
     }
+
+    // Constructor privat folosit intern pentru a crea copii imutabile
+    private Student(int numarMatricol, String prenume, String nume, int formatieDeStudiu, boolean estePrezent) {
+        this.numarMatricol = numarMatricol;
+        this.prenume = prenume;
+        this.nume = nume;
+        this.formatieDeStudiu = formatieDeStudiu;
+        this.estePrezent = estePrezent;
+    }
+
     public boolean verificaPrezenta() {
         return estePrezent;
     }
-    public void punePrezenta(boolean status) {
-        this.estePrezent = status;
+
+    public int getNumarMatricol() {
+        return numarMatricol;
     }
-    public void setNumarMatricol(int NumarMatricol){
-        this.NumarMatricol=NumarMatricol;
+
+    public String getPrenume() {
+        return prenume;
     }
-    public int getNumarMatricol(){
-        return this.NumarMatricol;
+
+    public String getNume() {
+        return nume;
     }
-    public void setPrenume(String prenume){
-        this.prenume=prenume;
+
+    public int getFormatieDeStudiu() {
+        return formatieDeStudiu;
     }
-    public String getPrenume(){
-        return this.prenume;
+
+    // --- METODE PENTRU IMUTABILITATE (Wither methods) ---
+
+    // Returneaza un student nou cu prezenta modificata
+    public Student withPrezenta(boolean status) {
+        if (this.estePrezent == status) {
+            return this;
+        }
+        return new Student(this.numarMatricol, this.prenume, this.nume, this.formatieDeStudiu, status);
     }
-    public void setNume(String nume){
-        this.nume=nume;
+
+    // Returneaza un student nou cu formatia de studiu modificata (Aceasta lipsea!)
+    public Student withFormatieDeStudiu(int nouaFormatie) {
+        if (this.formatieDeStudiu == nouaFormatie) {
+            return this;
+        }
+        return new Student(this.numarMatricol, this.prenume, this.nume, nouaFormatie, this.estePrezent);
     }
-    public String getNume(){
-        return this.nume;
-    }
-    public void setFormatieDeStudiu(int formatieDeStudiu){
-        this.formatieDeStudiu=formatieDeStudiu;
-    }
-    public int getFormatieDeStudiu(){
-        return this.formatieDeStudiu;
-    }
+
     @Override
     public String toString() {
         return "Student{\n" +
-                "NumarMatricol=" + NumarMatricol + "\n" +
+                "NumarMatricol=" + numarMatricol + "\n" +
                 "Prenume=" + prenume + '\n' +
                 "Nume=" + nume + '\n' +
                 "FormatieDeStudiu=" + formatieDeStudiu + "\n" +
+                "EstePrezent=" + estePrezent + "\n" +
                 "}";
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return NumarMatricol == student.NumarMatricol;
+        return numarMatricol == student.numarMatricol;
     }
 
     @Override
     public int hashCode() {
-        // Generează un cod unic bazat pe numărul matricol
-        return java.util.Objects.hash(NumarMatricol);
+        return Objects.hash(numarMatricol);
     }
 }
-
-
