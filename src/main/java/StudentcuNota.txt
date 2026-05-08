@@ -2,3 +2,17 @@ Alex Rodean 20 C232 3590 8,5
 Sorin Puscasu 21 C267 3599  9,5
 Rares Bradean 22 C212  3576  6
 David Vasile 19 C222   3581  4,49
+Mihai Popescu 20 C211 3585 7,25
+Andrei Ionescu 21 C212 3602 8,8
+Elena Radu 19 C221 3592 9,1
+Cristian Stan 22 C222 3578 5,5
+Ioana Dumitru 20 C231 3588 10
+Stefan Matei 21 C232 3605 6,75
+Gabriel Nistor 20 C211 3583 4,80
+Diana Rusu 19 C212 3597 9,35
+Vlad Munteanu 22 C221 3571 7,90
+Ana Barbu 21 C222 3610 8,45
+Alexandru Marin 20 C231 3594 8,10
+Maria Gheorghe 20 C232 3601 9,80
+Tudor Vasile 21 C211 3580 6,40
+Simona Neagu 20 C222 3589 8,95
