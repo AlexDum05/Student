@@ -78,9 +78,9 @@ public class Main {
         // ==========================================
         System.out.println("\n--- Gestiune Studenti cu Note (TXT) ---");
         List<StudentCuNota> listaCuNote = new ArrayList<>();
-        listaCuNote.add(new StudentCuNota(3590, "Alexandru", "Rodean", 232, 8.5));
-        listaCuNote.add(new StudentCuNota(3599, "Sorin", "Puscasu", 267, 9.5));
-        listaCuNote.add(new StudentCuNota(3576, "Rares", "Bradean", 212, 6.0));
+        Student studentRodean = new Student(3590, "Alexandru", "Rodean", 232);
+        listaCuNote.add(new StudentCuNota(studentRodean, 8.5));
+
 
         scrieStudentiInFisier(listaCuNote, "StudentcuNota_Rezultat.txt");
     }

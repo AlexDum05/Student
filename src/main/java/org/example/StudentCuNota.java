@@ -7,21 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class StudentCuNota {
+public final class StudentCuNota extends StudentDecorator {
 
-
-    private final Student student;
     private final double nota;
 
-
-    public StudentCuNota(int numarMatricol, String prenume, String nume, int formatieDeStudiu, double nota) {
-        this.student = new Student(numarMatricol, prenume, nume, formatieDeStudiu);
-        this.nota = nota;
-    }
-
-
-    public StudentCuNota(Student student, double nota) {
-        this.student = student;
+    // Constructorul folosit de decorator
+    public StudentCuNota(IStudent student, double nota) {
+        super(student);
         this.nota = nota;
     }
 
@@ -29,17 +21,18 @@ public final class StudentCuNota {
         return nota;
     }
 
-
-    public Student getStudent() {
-        return student;
+    // Suprascriem descrierea pentru a adăuga nota (comportamentul nou)
+    @Override
+    public String getDescriere() {
+        return super.getDescriere() + " | Nota: " + nota;
     }
 
     @Override
     public String toString() {
-
-        return student.toString() + " | Nota: " + nota;
+        return getDescriere();
     }
 
+    // --- LOGICA DE PROCESARE (Main) ---
 
     public static void main(String[] args) {
         // 1. Să plece de la o listă de StudentCuNota.
@@ -64,7 +57,7 @@ public final class StudentCuNota {
 
         // 4. Să transforme lista într-una în care notele < 4 devin 4 (map).
         List<StudentCuNota> listaModificata = listaInitiala.stream()
-                .map(s -> s.getNota() < 4.0 ? new StudentCuNota(s.getStudent(), 4.0) : s)
+                .map(s -> s.getNota() < 4.0 ? new StudentCuNota(s.getStudentDeBaza(), 4.0) : s)
                 .collect(Collectors.toList());
 
         System.out.println("\nLista a fost transformata (notele < 4 au devenit 4).");
@@ -83,10 +76,6 @@ public final class StudentCuNota {
         }
     }
 
-
-    /**
-     * Metodă statică pentru a încărca datele din fișierul text
-     */
     private static List<StudentCuNota> citesteDinFisier(String numeFisier) {
         List<StudentCuNota> rezultate = new ArrayList<>();
         try {
@@ -94,17 +83,19 @@ public final class StudentCuNota {
             for (String linie : linii) {
                 if (linie.trim().isEmpty()) continue;
 
-                // Împărțim după spații: Prenume Nume Ceva Grupa Matricol Nota
                 String[] p = linie.trim().split("\\s+");
                 if (p.length >= 6) {
                     String prenume = p[0];
                     String nume = p[1];
-                    int formatie = Integer.parseInt(p[2]); // ex: 20
-                    int matricol = Integer.parseInt(p[4]); // ex: 3590
-                    // Transformăm virgula în punct pentru Double.parseDouble
+                    int formatie = Integer.parseInt(p[2]);
+                    int matricol = Integer.parseInt(p[4]);
                     double nota = Double.parseDouble(p[5].replace(",", "."));
 
-                    rezultate.add(new StudentCuNota(matricol, prenume, nume, formatie, nota));
+                    // --- CREARE DECORATOR ---
+                    // Cream componenta de baza
+                    Student studentDeBaza = new Student(matricol, prenume, nume, formatie);
+                    // O decoram cu nota
+                    rezultate.add(new StudentCuNota(studentDeBaza, nota));
                 }
             }
         } catch (IOException e) {
@@ -115,4 +106,3 @@ public final class StudentCuNota {
         return rezultate;
     }
 }
-

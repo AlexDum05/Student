@@ -1,8 +1,9 @@
 package org.example;
 
-import java.util.Objects;
+import java.util.Objects; // Asigură-te că ai acest import pentru hashCode()
 
-public final class Student {
+// 1. Adaugi "implements IStudent"
+public class Student implements IStudent {
 
     private final int numarMatricol;
     private final String prenume;
@@ -58,13 +59,27 @@ public final class Student {
         return new Student(this.numarMatricol, this.prenume, this.nume, this.formatieDeStudiu, status);
     }
 
-    // Returneaza un student nou cu formatia de studiu modificata (Aceasta lipsea!)
+    // Returneaza un student nou cu formatia de studiu modificata
     public Student withFormatieDeStudiu(int nouaFormatie) {
         if (this.formatieDeStudiu == nouaFormatie) {
             return this;
         }
         return new Student(this.numarMatricol, this.prenume, this.nume, nouaFormatie, this.estePrezent);
     }
+
+    // --- METODELE ADĂUGATE PENTRU INTERFAȚA DECORATORULUI ---
+
+    @Override
+    public String getDescriere() {
+        return numarMatricol + " " + prenume + " " + nume + " (Grupa: " + formatieDeStudiu + ")";
+    }
+
+    @Override
+    public Student getStudentDeBaza() {
+        return this;
+    }
+
+    // --- OVERRIDES STANDARDE ---
 
     @Override
     public String toString() {
