@@ -81,8 +81,14 @@ public class Main {
         Student studentRodean = new Student(3590, "Alexandru", "Rodean", 232);
         listaCuNote.add(new StudentCuNota(studentRodean, 8.5));
 
-
         scrieStudentiInFisier(listaCuNote, "StudentcuNota_Rezultat.txt");
+
+        // ==========================================
+        // 6. CITIRE FISIERE CONCURENT (THREADS)
+        // ==========================================
+        System.out.println("\n--- Citire Fisiere cu Threads ---");
+        FileManager fileManager = new FileManager();
+        fileManager.startReadingFiles();
     }
 
     // --- METODELE AJUTATOARE ---

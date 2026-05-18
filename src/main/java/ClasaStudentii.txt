@@ -1,0 +1,7 @@
+Alex Rodean 20 C232 3590 8,5
+Sorin Puscasu 21 C267 3599  9,5
+Rares Bradean 22 C212  3576  6
+David Vasile 19 C222   3581  4,49
+Mihai Popescu 20 C211 3585 7,25
+Andrei Ionescu 21 C212 3602 8,8
+Elena Radu 19 C221 3592 9,1
